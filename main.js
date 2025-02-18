@@ -27,6 +27,7 @@ const material3 = new THREE.MeshBasicMaterial( { color: 0x5bcfc0 } );
 const torusKnot = new THREE.Mesh( TorusKnot, material3 ); scene.add( torusKnot );
 
 
+
 cube.visible = true;
 cone.visible=true;
 torusKnot.visible=true;
