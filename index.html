@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+ 
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    
+<script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@v0.155.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.155.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
+
+
+    <script type="module" src="main.js"></script>
+    
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '463450690038999',
+                cookie: true,
+                xfbml: true,
+                version: 'v22.0'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        function checkLoginState() {
+            FB.api('/me', { fields: 'name' },function (response) {
+                alert(JSON.stringify(response));
+            
+                var nombre = sessionStorage.getItem("nombre");
+                sessionStorage.setItem("nombre",response.name);
+                localStorage.setItem("id",response.id);
+
+                statusChangeCallback(response);
+            });
+        }
+    </script>
+</body>
+
+</html>
